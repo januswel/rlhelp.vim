@@ -14,6 +14,8 @@ set cpoptions&vim
 " constants {{{2
 unlockvar rlhelp#index#dict
 let rlhelp#index#dict = {
+            \   'VimScriptについて': 'usr_41.txt',
+            \   'Vim関数一覧': 'function-list',
             \   'ウィンドウをわける': 'usr_08.txt',
             \   'カーソルを移動する': 'usr_03.txt',
             \   'シンタクスハイライトを使う': 'usr_06.txt',
