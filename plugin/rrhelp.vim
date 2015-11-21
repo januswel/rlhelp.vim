@@ -24,31 +24,20 @@ if exists(':RRHelp') != 2
     command -complete=customlist,<SID>RRHelpCompleter -nargs=1 RRHelp call <SID>ShowRRHelp("<args>")
 endif
 
-" consts {{{2
-unlockvar s:complete_list
-let s:complete_list = {
-            \   'カーソルを上下に動かす': 'up-down-motions@ja',
-            \   'カーソルを左右に動かす': 'left-right-motions@ja',
-            \   'ウィンドウ': 'window@ja',
-            \   'バッファー': 'buffer@ja',
-            \}
-lockvar s:complete_list
-
-
 " functions {{{2
 function! s:RRHelpCompleter(ArgLead, CmdLine, CursorPos)
-    return sort(filter(keys(s:complete_list), 'v:val =~ "^' . a:ArgLead . '"'))
+    return sort(filter(keys(g:rrhelp#index#dict), 'v:val =~ "^' . a:ArgLead . '"'))
 endfunction
 
 function! s:ShowRRHelp(key)
-    let candidates = sort(keys(filter(copy(s:complete_list), 'v:key =~ "' . a:key . '"')))
+    let candidates = sort(keys(filter(copy(g:rrhelp#index#dict), 'v:key =~ "' . a:key . '"')))
 
     if empty(candidates)
         echoerr a:key . ' is not found in index'
         return
     endif
 
-    silent execute 'help ' . s:complete_list[candidates[0]]
+    silent execute 'help ' . g:rrhelp#index#dict[candidates[0]]
 endfunction
 
 
