@@ -12,8 +12,8 @@ set cpoptions&vim
 
 " main {{{1
 " constants {{{2
-unlockvar rrhelp#index#dict
-let rrhelp#index#dict = {
+unlockvar rlhelp#index#dict
+let rlhelp#index#dict = {
             \   'カーソルを移動する': 'usr_03.txt',
             \   '設定を変更する': 'usr_05.txt',
             \   'シンタクスハイライトを使う': 'usr_06.txt',
@@ -26,7 +26,7 @@ let rrhelp#index#dict = {
             \   '外部のプログラムを使う': '10.9',
             \   '単語を置換する': '12.1',
             \}
-lockvar rrhelp#index#dict
+lockvar rlhelp#index#dict
 
 " post-processings {{{1
 " restore the value of 'cpoptions'
