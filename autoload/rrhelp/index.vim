@@ -14,10 +14,17 @@ set cpoptions&vim
 " constants {{{2
 unlockvar rrhelp#index#dict
 let rrhelp#index#dict = {
-            \   'カーソルを上下に動かす': 'up-down-motions@ja',
-            \   'カーソルを左右に動かす': 'left-right-motions@ja',
-            \   'ウィンドウ': 'window@ja',
-            \   'バッファー': 'buffer@ja',
+            \   'カーソルを移動する': 'usr_03.txt',
+            \   '設定を変更する': 'usr_05.txt',
+            \   'シンタクスハイライトを使う': 'usr_06.txt',
+            \   'ウィンドウをわける': 'usr_08.txt',
+            \   '置換する': 'find-replace',
+            \   '操作を記録する': '10.1',
+            \   'ビジュアルブロックモードを使う': '10.5',
+            \   '文章を整形する': '10.7',
+            \   '大文字小文字を切り替える': '10.8',
+            \   '外部のプログラムを使う': '10.9',
+            \   '単語を置換する': '12.1',
             \}
 lockvar rrhelp#index#dict
 
