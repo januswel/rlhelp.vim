@@ -1,2 +1,4 @@
-# rrhelp.vim
-reverse resolution help for Vim
+rlhelp.vim
+==========
+
+reverse lookup help plugin for Vim
