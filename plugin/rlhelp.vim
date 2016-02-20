@@ -21,7 +21,7 @@ set cpoptions&vim
 " use exists() to check the command is already defined or not
 " return value 2 tells that the command matched completely exists
 if exists(':RLHelp') != 2
-    command -complete=customlist,<SID>RLHelpCompleter -nargs=1 RLHelp call <SID>ShowRLHelp("<args>")
+    command -complete=customlist,<SID>RLHelpCompleter -nargs=+ RLHelp call <SID>ShowRLHelp(<f-args>)
 endif
 
 " functions {{{2
@@ -39,19 +39,35 @@ function! s:GetDict()
 endfunction
 
 function! s:RLHelpCompleter(ArgLead, CmdLine, CursorPos)
-    return sort(filter(keys(s:GetDict()), 'v:val =~ "^' . a:ArgLead . '"'))
+    let dict = s:GetDict()
+    let commands = split(a:CmdLine)
+    let numof_commands = len(commands)
+
+    " detail items
+    if (3 <= numof_commands || (numof_commands == 2 && a:CmdLine =~ '\s\+$'))
+        let category = commands[1]
+        if (!has_key(dict, category))
+            echoerr category . ' is not found in categories'
+            return
+        endif
+
+        return sort(filter(keys(dict[category]), 'v:val =~ "^' . a:ArgLead . '"'))
+    endif
+
+    " category list
+    return sort(filter(keys(dict), 'v:val =~ "^' . a:ArgLead . '"'))
 endfunction
 
-function! s:ShowRLHelp(key)
+function! s:ShowRLHelp(category, item)
     let dict = s:GetDict()
-    let candidates = sort(keys(filter(copy(dict), 'v:key =~ "' . a:key . '"')))
+    let candidates = sort(keys(filter(copy(dict[a:category]), 'v:key =~ "' . a:item . '"')))
 
     if empty(candidates)
-        echoerr a:key . ' is not found in index'
+        echoerr a:item . ' is not found in index'
         return
     endif
 
-    silent execute 'help ' . dict[candidates[0]]
+    silent execute 'help ' . dict[a:category][candidates[0]]
 endfunction
 
 
