@@ -12,8 +12,8 @@ set cpoptions&vim
 
 " main {{{1
 " constants {{{2
-unlockvar rlhelp#index#dict
-let rlhelp#index#dict = {
+unlockvar rlhelp#ja#dict
+let rlhelp#ja#dict = {
             \   'VimScriptの書き方': 'usr_41.txt',
             \   'Vim関数一覧': 'function-list',
             \   'アンドゥ・リドゥする': '02.5',
@@ -46,7 +46,7 @@ let rlhelp#index#dict = {
             \   '置換モード': '04.9',
             \   '設定を変更する': 'usr_05.txt',
             \}
-lockvar rlhelp#index#dict
+lockvar rlhelp#ja#dict
 
 " post-processings {{{1
 " restore the value of 'cpoptions'
