@@ -25,12 +25,25 @@ if exists(':RLHelp') != 2
 endif
 
 " functions {{{2
+function! s:GetDict()
+    let langs = split(&helplang, ',')
+    for lang in langs
+        try
+            return eval('g:rlhelp#' . lang . '#dict')
+        catch /.*/
+            " nop
+        endtry
+    endfor
+    " if no dict is hit, use en dict
+    return eval('g:rlhelp#en#dict')
+endfunction
+
 function! s:RLHelpCompleter(ArgLead, CmdLine, CursorPos)
-    return sort(filter(keys(g:rlhelp#index#dict), 'v:val =~ "^' . a:ArgLead . '"'))
+    return sort(filter(keys(s:GetDict()), 'v:val =~ "^' . a:ArgLead . '"'))
 endfunction
 
 function! s:ShowRLHelp(key)
-    let candidates = sort(keys(filter(copy(g:rlhelp#index#dict), 'v:key =~ "' . a:key . '"')))
+    let candidates = sort(keys(filter(copy(s:GetDict()), 'v:key =~ "' . a:key . '"')))
 
     if empty(candidates)
         echoerr a:key . ' is not found in index'
