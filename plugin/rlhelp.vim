@@ -43,14 +43,15 @@ function! s:RLHelpCompleter(ArgLead, CmdLine, CursorPos)
 endfunction
 
 function! s:ShowRLHelp(key)
-    let candidates = sort(keys(filter(copy(s:GetDict()), 'v:key =~ "' . a:key . '"')))
+    let dict = s:GetDict()
+    let candidates = sort(keys(filter(copy(dict), 'v:key =~ "' . a:key . '"')))
 
     if empty(candidates)
         echoerr a:key . ' is not found in index'
         return
     endif
 
-    silent execute 'help ' . g:rlhelp#index#dict[candidates[0]]
+    silent execute 'help ' . dict[candidates[0]]
 endfunction
 
 
