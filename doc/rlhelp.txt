@@ -17,7 +17,7 @@ Commands:
 :RLHelp {category} {topic}
 	Shows help for a {topic} in {category}.  To know lists of categories
 	and topics, use a completion feature on the command line. See also
-	*cmdline-completion* .
+	|cmdline-completion|.
 
 SETTINGS						*rlhelp-settings*
 
