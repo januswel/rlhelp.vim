@@ -21,7 +21,8 @@ set cpoptions&vim
 " use exists() to check the command is already defined or not
 " return value 2 tells that the command matched completely exists
 if exists(':RLHelp') != 2
-    command -complete=customlist,<SID>RLHelpCompleter -nargs=+ RLHelp call <SID>ShowRLHelp(<f-args>)
+    command -complete=customlist,<SID>RLHelpCompleter -nargs=+ -bang RLHelp
+                \ call <SID>ShowRLHelp('<bang>', <f-args>)
 endif
 
 " functions {{{2
@@ -58,7 +59,7 @@ function! s:RLHelpCompleter(ArgLead, CmdLine, CursorPos)
     return sort(filter(keys(dict), 'v:val =~ "^' . a:ArgLead . '"'))
 endfunction
 
-function! s:ShowRLHelp(category, item)
+function! s:ShowRLHelp(bang, category, item)
     let dict = s:GetDict()
     let candidates = sort(keys(filter(copy(dict[a:category]), 'v:key =~ "' . a:item . '"')))
 
@@ -67,7 +68,13 @@ function! s:ShowRLHelp(category, item)
         return
     endif
 
-    silent execute 'help ' . dict[a:category][candidates[0]]
+    if a:bang ==# '!'
+        let tabcmd = 'tab '
+    else
+        let tabcmd = ''
+    endif
+
+    silent execute tabcmd . 'help ' . dict[a:category][candidates[0]]
 endfunction
 
 
