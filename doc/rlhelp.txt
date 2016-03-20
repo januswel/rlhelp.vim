@@ -1,0 +1,50 @@
+*rlhelp.txt*	Plugin to look up in help reversely
+                                                Last change: 2016 Mar 20.
+
+SYNOPSIS						*rlhelp-synopsis*
+>
+	:RLHelp Move Moving-around
+	:RLHelp Edit Moving-text
+
+DESCRIPTION						*rlhelp-description*
+
+This is a plugin that provides a command to reverse-look-up specified topics
+in help.
+
+PROVIDES						*rlhelp-provides*
+
+Commands:
+:RLHelp {category} {topic}
+	Shows help for a {topic} in {category}.  To know lists of categories
+	and topics, use a completion feature on the command line. See also
+	*cmdline-completion* .
+
+SETTINGS						*rlhelp-settings*
+
+This plugin doesn't have any settings.
+
+DISABLES						*rlhelp-disables*
+
+Variables:
+g:loaded_rlhelp
+	When exists, does nothing.  Use to disable this plugin.
+
+KNOWN ISSUES						*rlhelp-knownissues*
+
+See https://github.com/januswel/rlhelp.vim/issues .
+
+
+==============================================================================
+
+Author
+	janus_wel <janus.wel.3@gmail.com>
+Copyright
+	(c) 2016 by janus_wel
+License
+	This file is distributed under the CC0: Creative Commons Zero.
+	To the extent possible under law, janus_wel has waived all copyright
+	and related or neighboring rights to documents of rlhelp.vim. This
+	work is published from: Japan.
+	http://creativecommons.org/publicdomain/zero/1.0/legalcode
+
+vim:tw=78:ts=8:noet:ft=help:norl:
